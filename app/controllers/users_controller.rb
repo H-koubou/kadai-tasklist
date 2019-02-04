@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to root_url unless @user == current_user
     @user = User.find(params[:id])
     @tasks = @user.tasks.order('created_at DESC').page(params[:page])
+    redirect_to root_url unless @user == current_user
     counts(@user)
   end
 
